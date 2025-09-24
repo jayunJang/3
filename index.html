@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> PIZZA MAKER </title>
+
+  <style>
+
+    @font-face {
+    font-family: 'KkuBulLim';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BMkkubulimTTF-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+body{ background: url("bg.gif") no-repeat center center fixed;
+  background-size: cover;font-family: 'KkuBulLim';}
+    .controls{display: flex; flex-wrap: wrap; align-items: center; justify-content: center;}
+    .pizza-area{
+    position:relative; width:min(520px,90%); aspect-ratio:1/1;
+    border-radius:50%; display:grid; place-items:center; margin:20px auto;
+  background-image: url('bg.gif');}
+  .dough{
+    position:absolute; inset:0; border-radius:50%;border:1px solid black;
+    background:#f3e2c5;          
+    z-index:1;                    
+  }
+  .sauce{
+    position:absolute; inset:9%; border-radius:50%;border:1px solid black;
+    background:#dd3344;
+    transition:background .2s;
+    z-index:2;                  
+  }
+
+  .toppin{
+    position:absolute; inset:19%;  
+    object-fit:contain;
+    z-index:3;                    
+    cursor:pointer;
+    width:65%;
+  }
+   .pzbox{ width: 520px;height:520px ;  border:1px solid black; position:absolute; background:#FFF000; z-index:8;  display:none; font-size: 30px; font-display:center; }
+   .box-name{z-index:10;font-size:70px; font-weight:700; line-height:1.15; word-break:keep-all;}
+
+  .box-date{z-index:10;font-size:40px; margin-top:8px; opacity:.85}
+  .txt{font-size: 30px; margin: 20px ;}
+  .box-content{width:100%; display: flex; flex-direction: column; align-items:center; justify-content:center; }
+  .button{margin: auto;width: 120px;
+      display:grid;
+      padding:12px 24px;
+      border-radius:30px;
+      background:blue;
+      font-size:18px;
+      cursor:pointer;
+      color: white; font-family:'KkuBulLim'; justify-content:center;}
+ 
+  .pizzamake{display: flex; flex-wrap: wrap;}
+
+  #formBox{  display:none; 
+  padding-top: 140px;
+  padding-right: 150px;
+  position:fixed;   
+  top:0; right:0;
+  width:280px;      
+  height:100%;      ;
+  overflow-y:auto; } 
+  .field{margin:10px 0; display:grid; gap:6px; width: 300px;}
+  input{height:36px; padding:0 8px; border:1px solid #ccc; }
+
+ 
+	</style>
+</head>
+<body>
+
+ <div class="controls">
+    <input id="doughColor" type="color" value="#f3e2c5" style="margin: 20px; width: 100px; height: 50px;" >
+    <div class="txt"> 도우 색상 </div>
+    <input id="sauceColor" type="color" value="#dd3344" style="margin: 20px; width: 100px; height: 50px;" >
+    <div class="txt"> 소스 색상 </div>
+  </div>
+ <div id="textTop" style="font-size: 40px; text-align: center; margin: 40px;">
+   피자 토핑을 클릭해서 변경하세요!
+ </div>
+  <div class="pizza-area" id="pizzaArea">
+    <div class="dough" id="dough"></div>
+    <div class="sauce" id="sauce"></div>
+	  <img id="pic" class="toppin" src="1.png" >
+    <div class="pzbox" id="pzbox"></div>
+    <div id="boxContent" class="box-content">
+      <div id="boxName" class="box-name"></div><br><br><br><br><br>
+      <div id="boxDate" class="box-date"></div>
+    </div>
+</div>
+ <br><br><br>
+<div style="display:flex; justify-content:center;">
+
+  <button id="btn" class="button">포장하기</button>
+</div>
+ <aside id="formBox" class="formBox" >
+      <h3 class="txt">마무리</h3>
+      <div class="field">
+        <label for="pizzaName">피자 이름</label>
+        <input id="pizzaName" type="text">
+      </div>
+      <div class="field">
+        <label for="orderDate">날짜</label>
+        <input id="orderDate" type="date">
+      </div>
+      <div class="field"> 박스 색상 </div>
+      <input id="pzboxColor" type="color" value="#FFF000" style="width: 100px; height: 50px;" >
+       <div class="field"> 글자 색상 </div>
+      <input id="pzboxtxtColor" type="color" value="#FFF" style="width: 100px; height: 50px;" >
+      
+    
+    </aside>
+	<script>
+ doughColor.oninput = function() { 
+  dough.style.background = doughColor.value; 
+};
+ sauceColor.oninput = function() { 
+  sauce.style.background = sauceColor.value; 
+};
+ 
+
+let picNumber = 1;
+
+		pic.onclick = function(){
+			picNumber ++;
+
+		if (picNumber == 5) {
+			picNumber = 1
+		}
+pic.src = picNumber + ".png";}
+
+btn.onclick = function(){ 
+   formBox.style.display = "block";
+   pzbox.style.display = "block";
+   textTop.innerHTML = "피자 박스를 꾸며보세요!"
+
+
+}
+pizzaName.oninput = function(){
+    boxName.innerHTML = pizzaName.value;
+
+    }
+
+orderDate.oninput = function(){
+    boxDate.innerHTML = orderDate.value;
+
+    }
+pzboxColor.oninput = function(){ 
+  pzbox.style.background = pzboxColor.value; 
+};
+
+pzboxtxtColor.oninput = function(){ 
+  boxContent.style.color = pzboxtxtColor.value; 
+};
+	</script>
+</body>
+</html>
