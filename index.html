@@ -54,6 +54,14 @@ body{ background: url("bg.gif") no-repeat center center fixed;
       font-size:18px;
       cursor:pointer;
       color: white; font-family:'KkuBulLim'; justify-content:center;}
+  .btn2{margin: auto;width: 140px;
+      display:grid;
+      padding:12px 24px;
+      border-radius:30px;
+      background:red;
+      font-size:18px;
+      cursor:pointer;
+      color: white; font-family:'KkuBulLim'; justify-content:center;}
  
   .pizzamake{display: flex; flex-wrap: wrap;}
 
@@ -72,12 +80,12 @@ body{ background: url("bg.gif") no-repeat center center fixed;
 	</style>
 </head>
 <body>
-
+ <audio id="n1" src="n1.mp3" ></audio>
  <div class="controls">
     <input id="doughColor" type="color" value="#f3e2c5" style="margin: 20px; width: 100px; height: 50px;" >
-    <div class="txt"> 도우 색상 </div>
+    <div class="txt"> 도우 색상 변경 </div>
     <input id="sauceColor" type="color" value="#dd3344" style="margin: 20px; width: 100px; height: 50px;" >
-    <div class="txt"> 소스 색상 </div>
+    <div class="txt"> 소스 색상 변경 </div>
   </div>
  <div id="textTop" style="font-size: 40px; text-align: center; margin: 40px;">
    피자 토핑을 클릭해서 변경하세요!
@@ -111,7 +119,8 @@ body{ background: url("bg.gif") no-repeat center center fixed;
       <input id="pzboxColor" type="color" value="#FFF000" style="width: 100px; height: 50px;" >
        <div class="field"> 글자 색상 </div>
       <input id="pzboxtxtColor" type="color" value="#FFF" style="width: 100px; height: 50px;" >
-      
+      <br><br><br>
+      <button id="btnFinish" class="btn2"> 배달하기!!!! </button>
     
     </aside>
 	<script>
@@ -140,6 +149,11 @@ btn.onclick = function(){
 
 
 }
+
+btnFinish.onclick = function(){
+    n1.play();
+}
+
 pizzaName.oninput = function(){
     boxName.innerHTML = pizzaName.value;
 
